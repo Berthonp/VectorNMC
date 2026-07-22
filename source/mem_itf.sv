@@ -30,9 +30,9 @@ assign req = W_req || R_req;
 
 always_ff@(posedge clk, negedge rst_n) begin
     if(!rst_n)begin
-        W_enable <= 0';
-        req_out <= 0';
-        busy <= 0';
+        W_enable <= '0;
+        req_out <= '0;
+        busy <= '0;
     end else begin
         W_enable <= W_req;
         req_out <= req;
@@ -42,19 +42,18 @@ end
 
 always_ff@(posedge clk, negedge rst_n) begin
     if(!rst_n)begin
-        Addr_out <= 0';
-        Wdata_out <= 0';
+        Addr_out <= '0;
+        Wdata_out <= '0;
     end else if(!busy) begin
         Addr_out <= Addr_in;
         Wdata_out <= Wdata_in;
     end
-end
-
+end 
 
 always_ff@(posedge clk, negedge rst_n) begin
     if(!rst_n)begin
-        Rdata_out <= 0';
-        rvalid <= 0';
+        Rdata_out <= '0;
+        rvalid <= '0;
     end else if(data_ready) begin
         Rdata_out <= Rdata_in;
         rvalid <= 1'b1;
